@@ -1,12 +1,86 @@
 // Attendre que le DOM soit chargé
 document.addEventListener('DOMContentLoaded', () => {
-    // Préchargement des ressources critiques
-    const preloadAssets = () => {
-        const criticalImages = [
-            'assets/images/hero-bg.jpg',
-            'assets/images/logo.png'
-        ];
-        criticalImages.forEach(src => new Image().src = src);
+    // Optimisation des performances
+    const performanceOptimizer = {
+        init() {
+            this.lazyLoadImages();
+            this.deferNonCriticalCSS();
+            this.setupIntersectionObserver();
+            this.optimizeEventListeners();
+        },
+
+        lazyLoadImages() {
+            // Utilisation de loading="lazy" pour les images non critiques
+            document.querySelectorAll('img:not([loading])').forEach(img => {
+                if (!img.classList.contains('critical')) {
+                    img.loading = 'lazy';
+                }
+            });
+
+            // Préchargement des images critiques
+            const criticalImages = ['logo.png'];
+            criticalImages.forEach(img => {
+                const link = document.createElement('link');
+                link.rel = 'preload';
+                link.as = 'image';
+                link.href = `assets/images/${img}`;
+                document.head.appendChild(link);
+            });
+        },
+
+        deferNonCriticalCSS() {
+            // Chargement différé des styles non critiques
+            const nonCriticalCSS = [
+                'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css'
+            ];
+
+            nonCriticalCSS.forEach(href => {
+                const link = document.createElement('link');
+                link.rel = 'stylesheet';
+                link.href = href;
+                link.media = 'print';
+                link.onload = () => { link.media = 'all' };
+                document.head.appendChild(link);
+            });
+        },
+
+        setupIntersectionObserver() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        },
+
+        optimizeEventListeners() {
+            // Debounce du scroll
+            let scrollTimeout;
+            const header = document.querySelector('.main-header');
+            let lastScroll = 0;
+
+            window.addEventListener('scroll', () => {
+                if (!scrollTimeout) {
+                    scrollTimeout = setTimeout(() => {
+                        const currentScroll = window.pageYOffset;
+                        if (currentScroll > 60) {
+                            header.classList.add('sticky');
+                            header.classList.toggle('header-hidden', currentScroll > lastScroll);
+                        } else {
+                            header.classList.remove('sticky', 'header-hidden');
+                        }
+                        lastScroll = currentScroll;
+                        scrollTimeout = null;
+                    }, 16); // ~60fps
+                }
+            }, { passive: true });
+        }
     };
 
     // Gestion du header
@@ -48,7 +122,9 @@ document.addEventListener('DOMContentLoaded', () => {
         .value-card,
         .brands-slider,
         .history h2,
-        .timeline
+        .timeline,
+        .how-to-card,
+        .section-header
     `);
     
     elementsToAnimate.forEach(el => animateOnScroll.observe(el));
@@ -65,26 +141,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Menu mobile
-    const setupMobileMenu = () => {
-        const menuToggle = document.createElement('button');
-        menuToggle.className = 'menu-toggle';
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        
-        const nav = document.querySelector('.main-nav');
-        header.appendChild(menuToggle);
-
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-            menuToggle.classList.toggle('active');
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mainNav = document.querySelector('.main-nav');
+    const overlay = document.querySelector('.overlay');
+    
+    if (menuToggle && mainNav && overlay) {
+        menuToggle.addEventListener('click', function() {
+            mainNav.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
         });
-
-        nav.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                nav.classList.remove('active');
-                menuToggle.classList.remove('active');
+        
+        overlay.addEventListener('click', function() {
+            mainNav.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.classList.remove('no-scroll');
+        });
+        
+        // Fermer le menu en cliquant sur un lien
+        const navLinks = mainNav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                mainNav.classList.remove('active');
+                overlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
             });
         });
-    };
+    }
+    
+    // Ajouter la classe no-scroll au body
+    document.head.insertAdjacentHTML('beforeend', `
+        <style>
+            body.no-scroll {
+                overflow: hidden;
+            }
+        </style>
+    `);
 
     // Lazy loading des images
     const lazyLoad = () => {
@@ -189,12 +281,65 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Initialisation
     const init = () => {
-        preloadAssets();
-        setupMobileMenu();
+        performanceOptimizer.init();
         lazyLoad();
         addAnimationStyles();
         window.addEventListener('scroll', handleScroll, { passive: true });
     };
 
     init();
+
+    // Frise chronologique horizontale
+    const slider = document.querySelector('.timeline-slider');
+    const prevBtn = document.querySelector('.timeline-nav.prev');
+    const nextBtn = document.querySelector('.timeline-nav.next');
+    const yearLinks = document.querySelectorAll('.year-link');
+    
+    if (slider && prevBtn && nextBtn) {
+        // Navigation avec les boutons
+        prevBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: -slider.offsetWidth, behavior: 'smooth' });
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            slider.scrollBy({ left: slider.offsetWidth, behavior: 'smooth' });
+        });
+        
+        // Mise à jour de l'année active lors du défilement
+        slider.addEventListener('scroll', () => {
+            const slides = document.querySelectorAll('.timeline-slide');
+            const scrollPosition = slider.scrollLeft;
+            const slideWidth = slider.offsetWidth;
+            
+            slides.forEach((slide, index) => {
+                const slidePosition = index * slideWidth;
+                if (scrollPosition >= slidePosition - slideWidth / 2 && 
+                    scrollPosition < slidePosition + slideWidth / 2) {
+                    // Mettre à jour la classe active
+                    yearLinks.forEach(link => link.classList.remove('active'));
+                    yearLinks[index].classList.add('active');
+                }
+            });
+        });
+        
+        // Navigation avec les liens d'années
+        yearLinks.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const slideId = link.getAttribute('href');
+                const targetSlide = document.querySelector(slideId);
+                
+                if (targetSlide) {
+                    slider.scrollTo({
+                        left: index * slider.offsetWidth,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Mettre à jour la classe active
+                    yearLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+    }
 }); 
