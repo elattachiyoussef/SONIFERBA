@@ -42,315 +42,159 @@
         <div class="container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/images/logo.png" alt="Logo Soniferba" class="critical" width="180" height="60">
+                    <img src="images/logo.png" alt="Logo Soniferba" class="critical" width="180" height="60">
                 </a>
             </div>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="index.html#about">À propos</a></li>
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="index.html#services">Quincaillerie</a></li>
                     <li><a href="automatismes.html" class="active">Automatismes</a></li>
-                    <li><a href="index.html#renovation">Quincaillerie</a></li>
                     <li><a href="histoire.html">Histoire</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="mentions-legales.html" class="legal-link">Mentions légales</a></li>
+                    <li class="partner-nav-item">
+                        <a href="https://www.storistes-de-france.com/" target="_blank" rel="noopener" class="partner-nav-link">
+                            <img src="images/logostoristesfrance.jpg" alt="Storistes de France" class="partner-nav-logo">
+                        </a>
+                    </li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <!-- En-tête de page -->
-        <section class="page-header">
-            <div class="container">
-                <h1>Automatismes & Motorisations</h1>
-                <p class="page-subtitle">Installation et maintenance professionnelles</p>
+        <!-- Hero Section Automatismes -->
+        <section class="hero-section">
+            <div class="hero-background">
+                <div class="overlay"></div>
             </div>
-        </section>
-
-        <!-- Introduction -->
-        <section class="auto-intro">
-            <div class="container">
-                <div class="intro-content">
-                    <div class="intro-text">
-                        <h2>Notre expertise en automatismes</h2>
-                        <p>Chez Soniferba, nous proposons des solutions complètes d'automatisation pour votre confort et votre sécurité. Notre équipe qualifiée assure l'installation et la maintenance de systèmes automatisés pour portails, volets roulants et portes de garage.</p>
-                        <p>Que vous soyez un particulier souhaitant améliorer votre habitat ou un syndic de copropriété cherchant à équiper un immeuble, nous vous accompagnons dans toutes les étapes de votre projet. Nous intervenons à Nîmes et dans un rayon de 30km, avec des devis et visites techniques entièrement gratuits.</p>
+            <div class="hero-content">
+                <div class="container">
+                    <h1 class="hero-title">
+                        <span class="title-main">Solutions d'automatisation</span>
+                        <span class="title-sub">Installation et maintenance d'automatismes</span>
+                    </h1>
+                    <p class="hero-tagline">Portails, portes de garage et volets roulants</p>
+                    <div class="hero-cta">
+                        <a href="tel:0466848824" class="cta-button primary">
+                            <i class="fas fa-phone"></i> Demander un devis
+                        </a>
+                        <a href="#services" class="cta-button secondary">
+                            <i class="fas fa-arrow-right"></i> Nos prestations
+                        </a>
                     </div>
-                    <div class="intro-image">
-                        <img src="assets/images/automatisme-intro.jpg" alt="Installation d'automatisme" width="500" height="300" loading="lazy">
+                    <div class="scroll-indicator">
+                        <span>Découvrir</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Solutions pour particuliers -->
-        <section class="auto-solutions particuliers">
+        <!-- Services d'automatisation -->
+        <section id="services" class="services compact-section">
             <div class="container">
-                <h2 class="section-title">Solutions pour particuliers</h2>
+                <h2 class="section-title">Nos Solutions d'Automatisation</h2>
+                <p class="section-subtitle">Installation et maintenance professionnelle</p>
                 
-                <div class="solutions-grid">
-                    <div class="solution-card">
-                        <div class="solution-icon">
+                <div class="quincaillerie-grid">
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
                             <i class="fas fa-door-open"></i>
                         </div>
                         <h3>Portails</h3>
-                        <ul class="solution-features">
-                            <li>Motorisation à bras articulés</li>
-                            <li>Motorisation à vérins</li>
-                            <li>Motorisation enterrée</li>
-                            <li>Portails coulissants</li>
-                            <li>Commande à distance</li>
+                        <p>Motorisation de portails coulissants et battants</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Installation complète</li>
+                            <li><i class="fas fa-check"></i> Télécommandes sécurisées</li>
                         </ul>
-                        <div class="solution-benefits">
-                            <p>Confort d'utilisation par tous temps</p>
-                            <p>Sécurité renforcée</p>
-                            <p>Valorisation de votre propriété</p>
-                        </div>
                     </div>
-                    
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <i class="fas fa-window-maximize"></i>
-                        </div>
-                        <h3>Volets roulants</h3>
-                        <ul class="solution-features">
-                            <li>Motorisation filaire</li>
-                            <li>Motorisation radio</li>
-                            <li>Centralisation des commandes</li>
-                            <li>Programmation horaire</li>
-                            <li>Capteurs soleil/vent</li>
-                        </ul>
-                        <div class="solution-benefits">
-                            <p>Isolation thermique optimisée</p>
-                            <p>Simulation de présence</p>
-                            <p>Économies d'énergie</p>
-                        </div>
-                    </div>
-                    
-                    <div class="solution-card">
-                        <div class="solution-icon">
+
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
                             <i class="fas fa-warehouse"></i>
                         </div>
                         <h3>Portes de garage</h3>
-                        <ul class="solution-features">
-                            <li>Portes sectionnelles</li>
-                            <li>Portes basculantes</li>
-                            <li>Portes enroulables</li>
-                            <li>Systèmes anti-intrusion</li>
-                            <li>Éclairage automatique</li>
+                        <p>Automatisation de portes sectionnelles et basculantes</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Moteurs silencieux</li>
+                            <li><i class="fas fa-check"></i> Éclairage intégré</li>
                         </ul>
-                        <div class="solution-benefits">
-                            <p>Accès facilité par tous temps</p>
-                            <p>Protection contre les effractions</p>
-                            <p>Durabilité des équipements</p>
-                        </div>
                     </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Solutions pour copropriétés -->
-        <section class="auto-solutions coproprietes">
-            <div class="container">
-                <h2 class="section-title">Solutions pour copropriétés</h2>
-                
-                <div class="solutions-grid">
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <i class="fas fa-building"></i>
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
+                            <i class="fas fa-home"></i>
                         </div>
-                        <h3>Contrôle d'accès</h3>
-                        <ul class="solution-features">
-                            <li>Portails collectifs</li>
-                            <li>Barrières levantes</li>
-                            <li>Interphonie</li>
-                            <li>Vidéophonie</li>
-                            <li>Badges et télécommandes</li>
+                        <h3>Volets roulants</h3>
+                        <p>Motorisation de volets individuels ou centralisés</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Commande radio</li>
+                            <li><i class="fas fa-check"></i> Programmation horaire</li>
                         </ul>
-                        <div class="solution-benefits">
-                            <p>Gestion simplifiée des accès</p>
-                            <p>Sécurisation des espaces communs</p>
-                            <p>Traçabilité des entrées/sorties</p>
-                        </div>
                     </div>
-                    
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <i class="fas fa-parking"></i>
-                        </div>
-                        <h3>Parkings</h3>
-                        <ul class="solution-features">
-                            <li>Portes de garage collectives</li>
-                            <li>Barrières automatiques</li>
-                            <li>Bornes escamotables</li>
-                            <li>Éclairage automatisé</li>
-                            <li>Détection de présence</li>
-                        </ul>
-                        <div class="solution-benefits">
-                            <p>Fluidification des accès</p>
-                            <p>Réduction des coûts énergétiques</p>
-                            <p>Maintenance préventive</p>
-                        </div>
-                    </div>
-                    
-                    <div class="solution-card">
-                        <div class="solution-icon">
-                            <i class="fas fa-cogs"></i>
+
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
+                            <i class="fas fa-tools"></i>
                         </div>
                         <h3>Maintenance</h3>
-                        <ul class="solution-features">
-                            <li>Contrats d'entretien</li>
-                            <li>Interventions d'urgence</li>
-                            <li>Dépannage rapide</li>
-                            <li>Remplacement de pièces</li>
-                            <li>Mise aux normes</li>
+                        <p>Entretien et dépannage de vos installations</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Contrats d'entretien</li>
+                            <li><i class="fas fa-check"></i> Intervention rapide</li>
                         </ul>
-                        <div class="solution-benefits">
-                            <p>Prolongation de la durée de vie</p>
-                            <p>Réduction des pannes</p>
-                            <p>Conformité réglementaire</p>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Processus d'installation -->
-        <section class="installation-process">
+        <!-- Avantages -->
+        <section class="benefits-section">
             <div class="container">
-                <h2 class="section-title">Notre processus d'installation</h2>
-                
-                <div class="process-timeline">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
-                            <h3>Visite technique gratuite</h3>
-                            <p>Nos techniciens se déplacent gratuitement à Nîmes et ses alentours pour évaluer votre installation, vérifier les structures existantes et analyser vos besoins spécifiques.</p>
+                <h2 class="section-title">Pourquoi choisir nos automatismes ?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
                         </div>
+                        <h3>Sécurité renforcée</h3>
+                        <p>Systèmes anti-intrusion et protocoles de communication cryptés</p>
                     </div>
                     
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
-                            <h3>Devis gratuit et sans engagement</h3>
-                            <p>Suite à notre visite, nous vous fournissons un devis détaillé et transparent, incluant matériel, main d'œuvre et délais d'intervention, entièrement gratuit et sans obligation d'achat.</p>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-mobile-alt"></i>
                         </div>
+                        <h3>Contrôle à distance</h3>
+                        <p>Pilotage via smartphone et alertes en temps réel</p>
                     </div>
                     
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
-                            <h3>Installation</h3>
-                            <p>Intervention par nos techniciens qualifiés dans le respect des normes de sécurité, sur Nîmes et sa région (jusqu'à 30km).</p>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bolt"></i>
                         </div>
-                    </div>
-                    
-                    <div class="process-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
-                            <h3>Formation</h3>
-                            <p>Explication du fonctionnement et remise des documents techniques et garanties.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="process-step">
-                        <div class="step-number">5</div>
-                        <div class="step-content">
-                            <h3>Suivi</h3>
-                            <p>Service après-vente réactif et possibilité de contrat de maintenance préventive.</p>
-                        </div>
+                        <h3>Économie d'énergie</h3>
+                        <p>Moteurs basse consommation et gestion intelligente</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Marques partenaires -->
-        <section class="auto-brands">
+        <!-- Section Marques -->
+        <section class="brands">
             <div class="container">
                 <h2 class="section-title">Nos marques partenaires</h2>
-                <p class="section-subtitle">Nous travaillons exclusivement avec des fabricants reconnus pour la qualité et la fiabilité de leurs produits</p>
-                
-                <div class="brands-grid">
-                    <div class="brand-item">
-                        <img src="assets/images/brands/somfy.png" alt="Somfy" loading="lazy">
-                        <p>Leader mondial des automatismes pour la maison</p>
-                    </div>
-                    
-                    <div class="brand-item">
-                        <img src="assets/images/brands/nice.png" alt="Nice" loading="lazy">
-                        <p>Solutions innovantes pour l'automatisation</p>
-                    </div>
-                    
-                    <div class="brand-item">
-                        <img src="assets/images/brands/came.png" alt="Came" loading="lazy">
-                        <p>Spécialiste des systèmes d'automatisation</p>
-                    </div>
-                    
-                    <div class="brand-item">
-                        <img src="assets/images/brands/bft.png" alt="BFT" loading="lazy">
-                        <p>Technologie avancée pour portails et barrières</p>
-                    </div>
+                <div class="brands-slider">
+                    <!-- Même contenu que index.html mais filtré pour les marques d'automatismes -->
                 </div>
             </div>
         </section>
 
-        <!-- Témoignages -->
-        <section class="testimonials">
-            <div class="container">
-                <h2 class="section-title">Ce que disent nos clients</h2>
-                
-                <div class="testimonials-slider">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Installation rapide et soignée de notre portail automatique. L'équipe a été très professionnelle et à l'écoute de nos besoins."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Jean Dupont</h4>
-                                <p>Particulier, Nîmes</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Nous faisons confiance à Soniferba depuis plus de 5 ans pour la maintenance des automatismes de notre résidence. Service fiable et réactif."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Marie Laurent</h4>
-                                <p>Syndic de copropriété, Nîmes</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"La motorisation de nos volets roulants a transformé notre quotidien. Merci pour vos conseils pertinents et votre installation impeccable."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <div class="author-info">
-                                <h4>Pierre et Sophie Martin</h4>
-                                <p>Particuliers, Marguerittes</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="cta-section">
-            <div class="container">
-                <h2>Besoin d'un devis pour votre projet d'automatisation ?</h2>
-                <p>Notre équipe est à votre disposition pour étudier votre projet</p>
-                <div class="cta-buttons">
-                    <a href="tel:0466848824" class="cta-button primary">
-                        <i class="fas fa-phone"></i> 04 66 84 88 24
-                    </a>
-                    <a href="contact.html" class="cta-button secondary">Demander un devis</a>
-                </div>
-            </div>
+        <!-- Preuve sociale -->
+        <section class="social-proof">
+            <!-- Même structure que index.html mais avec des avis spécifiques aux automatismes -->
         </section>
     </main>
 
