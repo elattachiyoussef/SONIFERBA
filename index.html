@@ -3,7 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soniferba - Spécialiste en serrurerie et quincaillerie</title>
+    <title>Soniferba - Quincaillerie spécialisée et automatismes à Nîmes</title>
+    
+    <!-- Optimisations pour mobile -->
+    <meta name="theme-color" content="#8B0000">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Préchargement des ressources critiques -->
+    <link rel="preload" href="images/logo.png" as="image" fetchpriority="high">
+    <link rel="preload" href="images/boutiquesoniferba.jpg" as="image" fetchpriority="high">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" href="css/style.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" as="style">
+    
+    <!-- Préconnexions aux CDN -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
     <!-- Styles critiques inline pour le premier rendu -->
     <style>
@@ -16,7 +34,18 @@
         body { margin: 0; opacity: 1 !important; font-family: 'Raleway', sans-serif; }
         .main-header { background: var(--white); padding: 15px 0; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
-        .hero { min-height: 60vh; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)), url('assets/images/hero-bg.jpg'); background-size: cover; color: var(--white); padding: 80px 0; text-align: center; }
+        .hero { min-height: 60vh; background-color: #333; color: var(--white); padding: 80px 0; text-align: center; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5)); z-index: 1; }
+        .hero .container { position: relative; z-index: 2; }
+        
+        /* Optimisations pour mobile */
+        @media (max-width: 768px) {
+            .hero { min-height: 50vh; padding: 60px 0 40px; }
+            .hero h1 { font-size: 2rem; margin-bottom: 10px; }
+            .hero-subtitle { font-size: 1rem; margin-bottom: 8px; }
+            .hero-buttons { flex-direction: column; gap: 10px; }
+            .cta-button { width: 100%; margin: 0; }
+        }
         
         /* Animations et effets modernes */
         @keyframes fadeInUp {
@@ -74,33 +103,64 @@
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
+        
+        /* Styles pour l'image d'arrière-plan optimisée */
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        /* Optimisations pour les images sur mobile */
+        @media (max-width: 768px) {
+            .hero-background {
+                height: 100%;
+                object-position: center;
+            }
+        }
+        
+        /* Styles critiques pour éviter le FOUC */
+        body { opacity: 0; }
+        .js-loaded body { opacity: 1; transition: opacity 0.3s; }
     </style>
     
-    <!-- Préconnexions -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
     <!-- CSS principal -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
     
-    <!-- Chargement asynchrone des polices -->
+    <!-- Font Awesome via CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossorigin="anonymous" referrerpolicy="no-referrer" defer>
+    
+    <!-- Chargement asynchrone des polices via Google Fonts CDN -->
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" 
           rel="stylesheet" media="print" onload="this.media='all'">
     
     <!-- Meta tags -->
-    <meta name="description" content="Soniferba, votre expert en serrurerie et quincaillerie à Nîmes depuis 1984. Vente de serrures, automatismes et solutions de sécurité professionnelles.">
-    <meta name="keywords" content="serrurerie, quincaillerie, Nîmes, automatisme, portail, serrure, VACHETTE, BRICARD">
-    <meta property="og:title" content="Soniferba - Expert en serrurerie et quincaillerie à Nîmes">
+    <meta name="description" content="Soniferba, votre quincaillerie spécialisée à Nîmes depuis 1984. Vente et installation d'automatismes, serrures et systèmes de sécurité.">
+    <meta name="keywords" content="quincaillerie, automatismes, serrures, Nîmes, portail automatique, sécurité">
+    <meta property="og:title" content="Soniferba - Quincaillerie spécialisée et automatismes à Nîmes">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://soniferba.netlify.app/">
     <meta property="og:description" content="Votre spécialiste en serrurerie et automatismes depuis 1984. Vente de matériel professionnel.">
     <meta property="og:image" content="assets/images/logo.png">
     <link rel="canonical" href="https://soniferba.netlify.app/">
+    
+    <script>
+        // Ajouter la classe js-loaded dès que possible
+        document.documentElement.className += " js-loaded";
+    </script>
 </head>
 <body>
     <header class="main-header">
         <div class="container">
             <div class="logo">
                 <a href="index.html">
-                    <img src="assets/images/logo.png" alt="Logo Soniferba" class="critical" width="180" height="60">
+                    <img src="images/logo.png" alt="Logo Soniferba" class="critical" width="180" height="60" fetchpriority="high">
                 </a>
             </div>
             <button class="mobile-menu-toggle" aria-label="Menu">
@@ -108,12 +168,17 @@
             </button>
             <nav class="main-nav">
                 <ul>
-                    <li><a href="#about">À propos</a></li>
+                    <li><a href="#" class="active">Accueil</a></li>
+                    <li><a href="#services">Quincaillerie</a></li>
                     <li><a href="automatismes.html">Automatismes</a></li>
-                    <li><a href="#renovation">Quincaillerie</a></li>
                     <li><a href="histoire.html">Histoire</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="mentions-legales.html" class="legal-link">Mentions légales</a></li>
+                    <li class="partner-nav-item">
+                        <a href="https://www.storistes-de-france.com/" target="_blank" rel="noopener" class="partner-nav-link">
+                            <img src="images/logostoristesfrance.jpg" alt="Storistes de France" class="partner-nav-logo">
+                        </a>
+                    </li>
                 </ul>
             </nav>
             <div class="overlay"></div>
@@ -121,15 +186,26 @@
     </header>
 
     <main>
-        <!-- 1. Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <h1>Quincaillerie spécialisée & Automatismes</h1>
-                <p class="hero-subtitle">Votre fournisseur professionnel à Nîmes depuis 1984</p>
-                <p class="hero-slogan">Soniferba : sécurité, proximité, qualité.</p>
-                <div class="hero-buttons">
-                    <a href="#renovation" class="cta-button primary">Notre quincaillerie</a>
-                    <a href="contact.html" class="cta-button secondary">Nous contacter</a>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-background">
+                <div class="overlay"></div>
+            </div>
+            <div class="hero-content">
+                <div class="container">
+                    <h1 class="hero-title">
+                        <span class="title-main">Quincaillerie spécialisée & Automatismes</span>
+                        <span class="title-sub">Votre fournisseur professionnel à Nîmes depuis 1984</span>
+                    </h1>
+                    <p class="hero-tagline">Soniferba : sécurité, proximité, qualité.</p>
+                    <div class="hero-cta">
+                        <a href="tel:0466848824" class="cta-button primary">
+                            <i class="fas fa-phone"></i> Nous contacter
+                        </a>
+                        <a href="#services" class="cta-button secondary">
+                            <i class="fas fa-arrow-right"></i> Découvrir nos services
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -137,126 +213,106 @@
         <!-- Notre boutique à Nîmes -->
         <section id="about" class="boutique-nimes">
             <div class="container">
-                <h2 class="section-title">Votre quincaillerie professionnelle à Nîmes</h2>
+                <div class="section-header">
+                    <h2 class="section-title">Votre quincaillerie professionnelle à Nîmes</h2>
+                    <p class="section-subtitle">Depuis 1984, votre partenaire de confiance</p>
+                </div>
                 
-                <div class="boutique-content">
-                    <div class="boutique-image">
-                        <img src="assets/images/boutique-facade.jpg" alt="Façade de notre boutique à Nîmes" loading="lazy">
+                <div class="boutique-showcase">
+                    <div class="boutique-image-wrapper">
+                        <img src="images/boutiquesoniferba-min.jpg" alt="Façade de notre boutique à Nîmes" loading="lazy" class="boutique-img">
                     </div>
-                    
-                    <div class="boutique-info">
-                        <div class="info-card highlight">
-                            <div class="info-icon">
-                                <i class="fas fa-store"></i>
+                    <div class="boutique-content">
+                        <div class="boutique-text">
+                            <p class="boutique-intro">Soniferba est votre partenaire de confiance pour tous vos besoins en quincaillerie spécialisée et automatismes depuis près de 40 ans.</p>
+                            
+                            <div class="boutique-features-grid">
+                                <div class="feature-box">
+                                    <i class="fas fa-users-cog"></i>
+                                    <h3>Expertise professionnelle</h3>
+                                </div>
+                                <div class="feature-box">
+                                    <i class="fas fa-box-open"></i>
+                                    <h3>Large gamme de produits</h3>
+                                </div>
+                                <div class="feature-box">
+                                    <i class="fas fa-truck"></i>
+                                    <h3>Disponibilité immédiate</h3>
+                                </div>
+                                <div class="feature-box">
+                                    <i class="fas fa-handshake"></i>
+                                    <h3>Service personnalisé</h3>
+                                </div>
                             </div>
-                            <div class="info-content">
-                                <h3>Quincaillerie spécialisée</h3>
-                                <p>Nous proposons une large gamme de produits de quincaillerie professionnelle : serrures, cylindres, verrous, poignées, ferme-portes et accessoires des plus grandes marques.</p>
+                            
+                            <div class="boutique-contact">
+                                <h3><i class="fas fa-map-marker-alt"></i> Nous rendre visite</h3>
+                                <p>10 Boulevard Natoire, 30000 Nîmes</p>
+                                <p><i class="fas fa-clock"></i> Lundi-Jeudi : 8h-12h | 14h-18h • Vendredi : 8h-12h | 13h30-17h</p>
+                                <div class="contact-actions">
+                                    <a href="tel:0466848824" class="contact-btn"><i class="fas fa-phone"></i> 04 66 84 88 24</a>
+                                    <a href="https://maps.google.com/?q=Soniferba+10+Boulevard+Natoire+Nîmes" target="_blank" class="contact-btn"><i class="fas fa-directions"></i> Itinéraire</a>
+                                </div>
                             </div>
-                        </div>
-                        
-                        <div class="info-card">
-                            <div class="info-icon">
-                                <i class="fas fa-parking"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3>Parking client gratuit</h3>
-                                <p>Profitez de notre parking privé pour stationner facilement lors de votre visite. Accès direct depuis le Boulevard Natoire.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="info-card">
-                            <div class="info-icon">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3>Showroom d'automatismes</h3>
-                                <p>Découvrez nos solutions d'automatisation en fonctionnement dans notre espace d'exposition dédié.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="info-card">
-                            <div class="info-icon">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3>Atelier technique</h3>
-                                <p>Notre équipe technique peut réaliser des diagnostics et petites réparations sur place pour vos télécommandes et systèmes électroniques.</p>
-                            </div>
-                        </div>
-                        
-                        <div class="boutique-address">
-                            <p><i class="fas fa-map-marker-alt"></i> 10 Boulevard Natoire, 30000 Nîmes</p>
-                            <p><i class="fas fa-clock"></i> Lundi-Jeudi : 8h-12h | 14h-18h • Vendredi : 8h-12h | 13h30-17h</p>
-                            <a href="https://maps.google.com/?q=Soniferba+10+Boulevard+Natoire+Nîmes" target="_blank" class="map-link">
-                                <i class="fas fa-directions"></i> Itinéraire Google Maps
-                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 3. Section Notre quincaillerie professionnelle -->
-        <section id="renovation" class="renovation">
+        <!-- Section Services -->
+        <section id="services" class="services compact-section">
             <div class="container">
-                <h2 class="section-title">Notre quincaillerie professionnelle</h2>
-                <p class="section-subtitle">Spécialiste en serrurerie et quincaillerie depuis 1984</p>
+                <h2 class="section-title">Nos Services</h2>
+                <p class="section-subtitle">Solutions professionnelles pour tous vos besoins</p>
                 
-                <div class="renovation-grid">
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
+                <!-- Blocs Quincaillerie -->
+                <div class="quincaillerie-grid">
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
                             <i class="fas fa-key"></i>
                         </div>
-                        <h3>Serrures & Cylindres</h3>
-                        <p class="renovation-text">Serrures et cylindres de haute sécurité certifiés A2P des marques VACHETTE, BRICARD, DOM et ABUS.</p>
-                        <ul class="renovation-features">
-                            <li>Serrures multipoints</li>
-                            <li>Cylindres haute sécurité</li>
-                            <li>Organigrammes sur mesure</li>
-                            <li>Verrous et cadenas</li>
+                        <h3>Serrures</h3>
+                        <p>Spécialiste des solutions de fermeture haute sécurité</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Serrures multipoints</li>
+                            <li><i class="fas fa-check"></i> Cylindres européens</li>
                         </ul>
                     </div>
-                    
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
+
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
                             <i class="fas fa-door-open"></i>
                         </div>
-                        <h3>Quincaillerie de porte</h3>
-                        <p class="renovation-text">Poignées, béquilles, ferme-portes, paumelles et accessoires pour tous types de portes.</p>
-                        <ul class="renovation-features">
-                            <li>Poignées et béquilles</li>
-                            <li>Ferme-portes</li>
-                            <li>Paumelles et charnières</li>
-                            <li>Accessoires de pose</li>
+                        <h3>Portes</h3>
+                        <p>Équipements et accessoires pour portes et fenêtres</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Poignées et béquilles</li>
+                            <li><i class="fas fa-check"></i> Ferme-portes</li>
                         </ul>
                     </div>
-                    
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
+
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3>Technique</h3>
+                        <p>Solutions spécialisées pour professionnels</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Systèmes coulissants</li>
+                            <li><i class="fas fa-check"></i> Rails et galets</li>
+                        </ul>
+                    </div>
+
+                    <div class="quincaillerie-card">
+                        <div class="card-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
-                        <h3>Sécurité & Contrôle d'accès</h3>
-                        <p class="renovation-text">Verrous, serrures électriques, digicodes et systèmes de contrôle d'accès.</p>
-                        <ul class="renovation-features">
-                            <li>Verrous de sûreté</li>
-                            <li>Serrures électriques</li>
-                            <li>Digicodes et claviers</li>
-                            <li>Contrôle d'accès</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
-                            <i class="fas fa-tools"></i>
-                        </div>
-                        <h3>Quincaillerie spéciale</h3>
-                        <p class="renovation-text">Quincaillerie d'ameublement, de fenêtre et d'agencement pour professionnels.</p>
-                        <ul class="renovation-features">
-                            <li>Quincaillerie d'ameublement</li>
-                            <li>Accessoires pour fenêtres</li>
-                            <li>Systèmes coulissants</li>
-                            <li>Quincaillerie d'agencement</li>
+                        <h3>Sécurité</h3>
+                        <p>Dispositifs de sécurité et contrôle d'accès</p>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> Contrôle d'accès</li>
+                            <li><i class="fas fa-check"></i> Barres anti-panique</li>
                         </ul>
                     </div>
                 </div>
@@ -303,76 +359,135 @@
             </div>
         </section>
 
-        <!-- 4. Section Spécial Rénovation -->
-        <section id="renovation" class="renovation">
+        <!-- CTA Automatismes -->
+        <section class="auto-cta">
             <div class="container">
-                <h2 class="section-title">Notre quincaillerie professionnelle</h2>
-                <p class="section-subtitle">Spécialiste en serrurerie et quincaillerie depuis 1984</p>
-                
-                <div class="renovation-grid">
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
-                            <i class="fas fa-key"></i>
-                        </div>
-                        <h3>Serrures & Cylindres</h3>
-                        <p class="renovation-text">Serrures et cylindres de haute sécurité certifiés A2P des marques VACHETTE, BRICARD, DOM et ABUS.</p>
-                        <ul class="renovation-features">
-                            <li>Serrures multipoints</li>
-                            <li>Cylindres haute sécurité</li>
-                            <li>Organigrammes sur mesure</li>
-                            <li>Verrous et cadenas</li>
+                <div class="auto-cta-content">
+                    <div class="auto-cta-text">
+                        <h2>Installation d'automatismes</h2>
+                        <p>Nous installons et maintenons vos automatismes de portails, portes de garage et volets roulants.</p>
+                        <ul class="auto-features">
+                            <li><i class="fas fa-check"></i> Installation professionnelle</li>
+                            <li><i class="fas fa-check"></i> Maintenance préventive</li>
+                            <li><i class="fas fa-check"></i> Dépannage rapide</li>
+                            <li><i class="fas fa-check"></i> Garantie fabricant</li>
                         </ul>
+                        <div class="auto-cta-buttons">
+                            <a href="tel:0466848824" class="cta-button secondary"><i class="fas fa-phone"></i> Demander un devis gratuit</a>
+                            <a href="automatismes.html" class="cta-button primary"><i class="fas fa-arrow-right"></i> Voir nos installations</a>
+                        </div>
                     </div>
-                    
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
-                            <i class="fas fa-door-open"></i>
+                    <div class="auto-cta-image">
+                        <img src="assets/images/automatisme-cta.jpg" alt="Automatisme de portail en action" loading="lazy">
+                        <div class="image-button">
+                            <a href="automatismes.html" class="learn-more-btn">
+                                <span>En savoir plus</span>
+                                <i class="fas fa-arrow-right"></i>
+                            </a>
                         </div>
-                        <h3>Quincaillerie de porte</h3>
-                        <p class="renovation-text">Poignées, béquilles, ferme-portes, paumelles et accessoires pour tous types de portes.</p>
-                        <ul class="renovation-features">
-                            <li>Poignées et béquilles</li>
-                            <li>Ferme-portes</li>
-                            <li>Paumelles et charnières</li>
-                            <li>Accessoires de pose</li>
-                        </ul>
                     </div>
+                </div>
+
+                <!-- Preuve sociale -->
+                <div class="social-proof">
+                    <h3>Ce que disent nos clients</h3>
                     
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
-                            <i class="fas fa-shield-alt"></i>
+                    <!-- Avis Google -->
+                    <div class="google-reviews">
+                        <div class="reviews-header">
+                            <div class="google-logo">
+                                <img src="assets/images/google-reviews.png" alt="Google Reviews" loading="lazy" width="120" height="40">
+                            </div>
+                            <div class="rating">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <span class="rating-value">4.7/5</span>
+                                <span class="reviews-count">basé sur 38 avis</span>
+                            </div>
                         </div>
-                        <h3>Sécurité & Contrôle d'accès</h3>
-                        <p class="renovation-text">Verrous, serrures électriques, digicodes et systèmes de contrôle d'accès.</p>
-                        <ul class="renovation-features">
-                            <li>Verrous de sûreté</li>
-                            <li>Serrures électriques</li>
-                            <li>Digicodes et claviers</li>
-                            <li>Contrôle d'accès</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="renovation-card">
-                        <div class="renovation-icon">
-                            <i class="fas fa-tools"></i>
+                        
+                        <div class="reviews-slider">
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div class="reviewer">
+                                        <span class="reviewer-name">Laurent Dubois</span>
+                                    </div>
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="review-text">"Installation impeccable de notre portail automatique. Équipe professionnelle et efficace. Je recommande vivement !"</p>
+                            </div>
+                            
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div class="reviewer">
+                                        <span class="reviewer-name">Sophie Martin</span>
+                                    </div>
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="review-text">"Très satisfaite de l'installation de mes volets roulants. Service client au top et travail soigné. Merci à toute l'équipe !"</p>
+                            </div>
+                            
+                            <div class="review-card">
+                                <div class="review-header">
+                                    <div class="reviewer">
+                                        <span class="reviewer-name">Michel Garcia</span>
+                                    </div>
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <p class="review-text">"Entreprise sérieuse et réactive. Maintenance régulière de nos automatismes depuis 3 ans, rien à redire !"</p>
+                            </div>
                         </div>
-                        <h3>Quincaillerie spéciale</h3>
-                        <p class="renovation-text">Quincaillerie d'ameublement, de fenêtre et d'agencement pour professionnels.</p>
-                        <ul class="renovation-features">
-                            <li>Quincaillerie d'ameublement</li>
-                            <li>Accessoires pour fenêtres</li>
-                            <li>Systèmes coulissants</li>
-                            <li>Quincaillerie d'agencement</li>
-                        </ul>
+                        
+                        <a href="https://g.page/soniferba/review" target="_blank" rel="noopener" class="review-link">
+                            <i class="fas fa-external-link-alt"></i> Voir tous les avis Google
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 6. Section Marques -->
-        <section id="brands" class="brands">
+        <!-- Ajouter après la section "Comment faire avec votre serrure" -->
+        <div class="service-notice">
             <div class="container">
-                <h2>Nos marques partenaires</h2>
+                <div class="notice-content">
+                    <div class="notice-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <div class="notice-text">
+                        <h3>Information importante</h3>
+                        <p>Nous ne réalisons pas d'installations ni de déplacements pour des dépannages de serrures. Nos services d'installation et de maintenance concernent uniquement les automatismes (portails, volets roulants).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section Marques -->
+        <section class="brands">
+            <div class="container">
+                <h2 class="section-title">Nos marques partenaires</h2>
                 <div class="brands-slider">
                     <div class="brands-slider-inner">
                         <!-- Premier groupe de marques -->
@@ -411,119 +526,10 @@
                                 <p>Solutions d'automatisation intelligentes</p>
                             </div>
                         </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/came.png" alt="Came">
-                            <div class="brand-overlay">
-                                <h4>Came</h4>
-                                <p>Expert en automatismes de portails</p>
-                            </div>
-                        </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/abus.png" alt="Abus">
-                            <div class="brand-overlay">
-                                <h4>Abus</h4>
-                                <p>Sécurité et quincaillerie allemande</p>
-                            </div>
-                        </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/assa.png" alt="Assa Abloy">
-                            <div class="brand-overlay">
-                                <h4>Assa Abloy</h4>
-                                <p>Leader mondial en solutions d'accès</p>
-                            </div>
-                        </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/thirard.png" alt="Thirard">
-                            <div class="brand-overlay">
-                                <h4>Thirard</h4>
-                                <p>Spécialiste français de la quincaillerie</p>
-                            </div>
-                        </div>
-                        
-                        <!-- Duplication pour l'animation continue -->
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/vachette.png" alt="Vachette" loading="lazy">
-                            <div class="brand-overlay">
-                                <h4>Vachette</h4>
-                                <p>Leader en serrures de haute sécurité</p>
-                            </div>
-                        </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/bricard.png" alt="Bricard">
-                            <div class="brand-overlay">
-                                <h4>Bricard</h4>
-                                <p>Solutions de sécurité innovantes</p>
-                            </div>
-                        </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/dom.png" alt="DOM">
-                            <div class="brand-overlay">
-                                <h4>DOM</h4>
-                                <p>Expert en systèmes de fermeture</p>
-                            </div>
-                        </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/somfy.png" alt="Somfy">
-                            <div class="brand-overlay">
-                                <h4>Somfy</h4>
-                                <p>N°1 de la motorisation et domotique</p>
-                            </div>
-                        </div>
-                        <div class="brand-slide">
-                            <img src="assets/images/brands/nice.png" alt="Nice">
-                            <div class="brand-overlay">
-                                <h4>Nice</h4>
-                                <p>Solutions d'automatisation intelligentes</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Call to Action Automatismes -->
-        <section class="auto-cta">
-            <div class="container">
-                <div class="auto-cta-content">
-                    <div class="auto-cta-text">
-                        <h2>Simplifiez votre quotidien avec nos automatismes</h2>
-                        <p>Imaginez rentrer chez vous sans sortir de votre voiture, même sous la pluie. Votre portail s'ouvre à distance, vos volets se ferment automatiquement au crépuscule, et votre porte de garage se soulève d'une simple pression.</p>
-                        <p>Chez Soniferba, nous transformons cette vision en réalité avec des solutions d'automatisation sur mesure, installées par nos experts.</p>
-                        <ul class="auto-benefits">
-                            <li><i class="fas fa-check-circle"></i> Installation professionnelle garantie</li>
-                            <li><i class="fas fa-check-circle"></i> Devis et visite technique gratuits</li>
-                            <li><i class="fas fa-check-circle"></i> Maintenance et SAV réactif</li>
-                        </ul>
-                        <div class="auto-cta-buttons">
-                            <a href="automatismes.html" class="cta-button primary">Découvrir nos automatismes</a>
-                            <a href="tel:0466848824" class="cta-button secondary"><i class="fas fa-phone"></i> Demander un devis gratuit</a>
-                        </div>
-                    </div>
-                    <div class="auto-cta-image">
-                        <img src="assets/images/automatisme-cta.jpg" alt="Automatisme de portail en action" loading="lazy">
-                        <div class="image-badge">
-                            <span class="badge-text">Installation à partir de</span>
-                            <span class="badge-price">590€</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Ajouter après la section "Comment faire avec votre serrure" -->
-        <div class="service-notice">
-            <div class="container">
-                <div class="notice-content">
-                    <div class="notice-icon">
-                        <i class="fas fa-info-circle"></i>
-                    </div>
-                    <div class="notice-text">
-                        <h3>Information importante</h3>
-                        <p>Nous ne réalisons pas d'installations ni de déplacements pour des dépannages de serrures. Nos services d'installation et de maintenance concernent uniquement les automatismes (portails, volets roulants).</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
 
     <footer class="main-footer">
@@ -547,8 +553,8 @@
                 <div class="footer-hours">
                     <h4>Horaires d'ouverture</h4>
                     <ul class="footer-hours-list">
-                        <li><span>Lundi - Jeudi</span><span>8h-12h | 14h-18h</span></li>
-                        <li><span>Vendredi</span><span>8h-12h | 13h30-17h</span></li>
+                        <li><span>Lundi - Jeudi</span> <span> 8h-12h | 14h-18h</span></li>
+                        <li><span>Vendredi</span> <span> 8h-12h | 13h30-17h</span></li>
                         <li class="closed"><span>Samedi - Dimanche</span><span>Fermé</span></li>
                     </ul>
                 </div>
@@ -558,7 +564,7 @@
                     <ul class="footer-nav">
                         <li><a href="#about">À propos</a></li>
                         <li><a href="automatismes.html">Automatismes</a></li>
-                        <li><a href="#renovation">Quincaillerie</a></li>
+                        <li><a href="#services">Quincaillerie</a></li>
                         <li><a href="histoire.html">Histoire</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -583,5 +589,11 @@
 
     <!-- Scripts -->
     <script src="js/main.js" defer></script>
+    <script>
+        // S'assurer que la page est complètement chargée
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+        });
+    </script>
 </body>
 </html> 
