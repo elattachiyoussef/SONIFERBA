@@ -15,6 +15,22 @@
     --transition-duration: 0.3s;
 }
 
+/* Reset CSS pour la cohérence cross-browser */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force le chargement des polices */
+@font-face {
+    font-family: 'Raleway';
+    font-display: swap;
+    src: local('Raleway'), url('https://fonts.gstatic.com/s/raleway/v28/1Ptug8zYS_SKggPNyC0ITw.woff2') format('woff2');
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -38,11 +54,12 @@ body {
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 15px;
 }
 
 /* Header */
 .main-header {
-    background: rgba(255,255,255,0.95);
+    background: rgba( #ffffff );
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); /* Support Safari */
     padding: 15px 0;
@@ -2323,9 +2340,9 @@ body {
 /* Grille Quincaillerie */
 .quincaillerie-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    margin-top: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
 }
 
 .quincaillerie-card {

@@ -19,13 +19,16 @@ mv assets/images/hero-bg.optimized.jpg assets/images/hero-bg.jpg
 convert assets/images/logo.png -strip -quality 90 assets/images/logo.optimized.png
 mv assets/images/logo.optimized.png assets/images/logo.png
 
-# Créer des versions WebP pour les navigateurs modernes
-echo "Création des versions WebP..."
-for img in assets/images/*.{jpg,png}; do
-    if [ -f "$img" ]; then
-        cwebp -q 80 "$img" -o "${img%.*}.webp"
-    fi
-done
+# Optimiser les images PNG
+find . -type f -name "*.png" -exec convert {} -strip -quality 85 {} \;
 
+# Optimiser les images JPG
+find . -type f -name "*.jpg" -exec convert {} -strip -quality 85 {} \;
+
+# Optimiser les images JPEG
+find . -type f -name "*.jpeg" -exec convert {} -strip -quality 85 {} \;
+
+# Créer des versions WebP
+find . -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) -exec sh -c 'cwebp -q 85 "$1" -o "${1%.*}.webp"' sh {} \;
 
 echo "Optimisation terminée!" 
