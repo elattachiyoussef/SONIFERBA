@@ -2,6 +2,11 @@
   publish = "/"
   command = ""
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 # Optimisations de cache pour les ressources statiques
 [[headers]]
   for = "/*"
@@ -32,13 +37,6 @@
   for = "*.woff2"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-# Redirection HTTP vers HTTPS
-[[redirects]]
-  from = "http://*"
-  to = "https://:splat"
-  status = 301
-  force = true
 
 # Configuration du traitement des assets
 [build.processing]
