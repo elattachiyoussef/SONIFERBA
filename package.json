@@ -1,0 +1,10 @@
+{
+  "name": "soniferba",
+  "version": "1.0.0",
+  "description": "Site web de Soniferba",
+  "scripts": {
+    "build": "echo 'No build required'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+} 
