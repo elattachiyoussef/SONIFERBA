@@ -772,4 +772,82 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
+
+    // Gestionnaire d'animations optimisé
+    class AnimationManager {
+        constructor() {
+            this.animatedElements = document.querySelectorAll('.animate');
+            this.isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            this.throttleDelay = 50;
+            this.lastScrollTime = 0;
+            
+            this.init();
+        }
+
+        init() {
+            if (this.isReducedMotion) {
+                this.disableAnimations();
+                return;
+            }
+
+            this.bindEvents();
+            this.checkVisibility();
+        }
+
+        bindEvents() {
+            // Utilisation de requestAnimationFrame et throttling pour les performances
+            window.addEventListener('scroll', () => {
+                if (Date.now() - this.lastScrollTime > this.throttleDelay) {
+                    window.requestAnimationFrame(() => {
+                        this.checkVisibility();
+                        this.lastScrollTime = Date.now();
+                    });
+                }
+            });
+
+            window.addEventListener('resize', this.debounce(() => {
+                this.checkVisibility();
+            }, 150));
+        }
+
+        checkVisibility() {
+            this.animatedElements.forEach(element => {
+                if (this.isElementInViewport(element) && !element.classList.contains('visible')) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        isElementInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            
+            return (
+                rect.top <= windowHeight * 0.8 &&
+                rect.bottom >= 0
+            );
+        }
+
+        debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        disableAnimations() {
+            this.animatedElements.forEach(element => {
+                element.classList.add('visible');
+                element.style.transition = 'none';
+            });
+        }
+    }
+
+    // Initialisation
+    const animationManager = new AnimationManager();
 }); 
